@@ -1,0 +1,88 @@
+body {
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  transition: 0.3s;
+}
+
+.container {
+  width: 350px;
+}
+
+.input-box {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.filters {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+li {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e293b;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+li.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task-left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.actions button {
+  margin-left: 5px;
+  padding: 5px 8px;
+}
+
+.delete {
+  background: lab(100% 0.01 -0.01);
+  color: #ff0000;
+}
+
+.edit {
+  background: #3b82f6;
+  color: white;
+}
+
+.mode-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* LIGHT MODE */
+.light {
+  background: #f1f5f9;
+  color: black;
+}
+
+.light li {
+  background: #e2e8f0;
+}
