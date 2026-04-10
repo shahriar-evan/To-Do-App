@@ -1,11 +1,13 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
+
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* 🔥 dark gradient */
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   min-height: 100vh;
 }
@@ -105,22 +107,35 @@ li {
 /* MODE BUTTON */
 .mode-btn {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background-color: #000000;
-  padding: 10px;
 }
 
 /* LIGHT MODE */
 .light {
-  background: #f1f5f9;
+  background: #f5f7fa;
   color: black;
 }
 
+/* Light mode container */
 .light .container {
   background: white;
   color: black;
+}
+
+.container {
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+
+  /* Dark mode */
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .light li {
@@ -131,10 +146,20 @@ li {
 
 @media (max-width: 600px) {
 
+  .input-box {
+    flex-direction: column;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
   button {
     width: 100%;
     margin-top: 8px;
   }
+
+}
 
   .input-box button {
     width: 100%;   /* Add button full width */
@@ -144,7 +169,6 @@ li {
     width: 100%;
   }
 
-}
   .input-box {
     flex-direction: column;
   }
