@@ -1,81 +1,74 @@
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let filter = "all";
 
-function save() {
+function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+function renderTasks() {
+  let list = document.getElementById("taskList");
+  list.innerHTML = "";
+
+  let filtered = tasks.filter(task => {
+    if (filter === "active") return !task.done;
+    if (filter === "completed") return task.done;
+    return true;
+  });
+
+  filtered.forEach((task, index) => {
+    let li = document.createElement("li");
+    if (task.done) li.classList.add("completed");
+
+    li.innerHTML = `
+      <span onclick="toggleTask(${index})">${task.text}</span>
+      <div class="actions">
+        <button class="edit" onclick="editTask(${index})">✏️</button>
+        <button class="delete" onclick="deleteTask(${index})">❌</button>
+      </div>
+    `;
+
+    list.appendChild(li);
+  });
+}
+
 function addTask() {
-  const input = document.getElementById("taskInput");
-  const text = input.value;
+  let input = document.getElementById("taskInput");
+  if (input.value.trim() === "") return;
 
-  if (text === "") return;
-
-  tasks.push({ text, completed: false });
+  tasks.push({ text: input.value, done: false });
   input.value = "";
-  save();
-  render();
+  saveTasks();
+  renderTasks();
 }
 
 function deleteTask(index) {
   tasks.splice(index, 1);
-  save();
-  render();
+  saveTasks();
+  renderTasks();
 }
 
-function toggleComplete(index) {
-  tasks[index].completed = !tasks[index].completed;
-  save();
-  render();
+function toggleTask(index) {
+  tasks[index].done = !tasks[index].done;
+  saveTasks();
+  renderTasks();
 }
 
 function editTask(index) {
-  const newText = prompt("Edit task:", tasks[index].text);
-  if (newText !== null && newText !== "") {
+  let newText = prompt("Edit task:", tasks[index].text);
+  if (newText) {
     tasks[index].text = newText;
-    save();
-    render();
+    saveTasks();
+    renderTasks();
   }
 }
 
 function setFilter(type) {
   filter = type;
-  render();
-}
-
-function render() {
-  const list = document.getElementById("taskList");
-  list.innerHTML = "";
-
-  tasks
-    .filter(task => {
-      if (filter === "active") return !task.completed;
-      if (filter === "completed") return task.completed;
-      return true;
-    })
-    .forEach((task, index) => {
-      const li = document.createElement("li");
-      if (task.completed) li.classList.add("completed");
-
-      li.innerHTML = `
-        <div class="task-left">
-          <input type="checkbox" ${task.completed ? "checked" : ""} 
-            onclick="toggleComplete(${index})">
-          <span>${task.text}</span>
-        </div>
-
-        <div class="actions">
-          <button class="edit" onclick="editTask(${index})">✏️</button>
-          <button class="delete" onclick="deleteTask(${index})">❌</button>
-        </div>
-      `;
-
-      list.appendChild(li);
-    });
+  renderTasks();
 }
 
 function toggleMode() {
   document.body.classList.toggle("light");
 }
 
-render();
+renderTasks();

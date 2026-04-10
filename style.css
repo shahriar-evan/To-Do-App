@@ -1,80 +1,108 @@
 body {
+  margin: 0;
   font-family: Arial;
-  background: #0f172a;
-  color: white;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
   display: flex;
-  justify-content: center;
-  margin-top: 50px;
-  transition: 0.3s;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+/* GLASS CARD */
 .container {
-  width: 350px;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  margin: auto;
+  transform: translateY(-20x);
 }
 
+h1 {
+  text-align: center;
+}
+
+/* INPUT */
 .input-box {
   display: flex;
   gap: 10px;
+  margin-bottom: 15px;
 }
 
 input {
+  width: 100%;
+  margin: 5px 0;
   flex: 1;
   padding: 10px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+input:focus {
+  outline: none;
+  border: 2px solid #4facfe;
 }
 
 button {
   padding: 10px;
-  cursor: pointer;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #4facfe;
+  color: white;
+  transition: 0.2s;
 }
 
+button:hover {
+  transform: scale(1.05);
+}
+
+/* FILTER */
 .filters {
-  margin-top: 10px;
   display: flex;
-  gap: 5px;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
+/* TASK */
 li {
-  margin-top: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: #1e293b;
+  background: rgba(255,255,255,0.15);
   padding: 10px;
-  border-radius: 6px;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
-li.completed span {
+.completed span {
   text-decoration: line-through;
   opacity: 0.6;
 }
 
-.task-left {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
+/* ACTION BUTTONS */
 .actions button {
   margin-left: 5px;
   padding: 5px 8px;
 }
 
 .delete {
-  background: lab(100% 0.01 -0.01);
-  color: #ff0000;
+  background: #000000;
 }
 
 .edit {
-  background: #3b82f6;
-  color: white;
+  background: hsl(0, 0%, 0%);
 }
 
+/* MODE BUTTON */
 .mode-btn {
   position: fixed;
-  bottom: 20px;
+  top: 20px;
   right: 20px;
+  border-radius: 50%;
+  background-color: #000000;
+  padding: 10px;
 }
 
 /* LIGHT MODE */
@@ -83,6 +111,37 @@ li.completed span {
   color: black;
 }
 
+.light .container {
+  background: white;
+  color: black;
+}
+
 .light li {
   background: #e2e8f0;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .input-box {
+    flex-direction: column;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+}
+
+.light input {
+  border: 2px solid black;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #ccc;
+  background: #000000;
+  backdrop-filter: blur(10px);
+  margin-top: auto;
+  border-radius: 10px;
 }
